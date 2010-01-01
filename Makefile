@@ -24,8 +24,9 @@ TARGET= $(DIR)/build/test
 OBJS += libAircraft
 
 all: 
-	 make $(DIR)/c_environment
-	 echo "$(CXX) $(INCS) libAircraft.c -fPIC -o $(TARGET)/$$i.so $(LIBS) " &&
+	 make -C $(DIR)/c_environment
+	 mkdir -p $(TARGET)
+	 echo "$(CXX) $(INCS) libAircraft.c -fPIC -o $(TARGET)/$$i.so $(LIBS) " 
 	 $(CXX) $(INCS) libAircraft.c -fPIC -o $(TARGET)/libAircraft.so $(LIBS) -shared
 
 clean:
