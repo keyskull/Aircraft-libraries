@@ -1,3 +1,3 @@
 [submodule "c_environment"]
 	path = c_environment
-	url = https://github.com/keyskull/c_environment.git
+	url = https://github.com/pcduino/c_environment.git
