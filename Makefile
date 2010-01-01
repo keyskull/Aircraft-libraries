@@ -21,7 +21,7 @@ INCS = -I.\
 LIBS= $(DIR)/libarduino.a
 TARGET= $(DIR)/../build/test
 
-OBJS += Aircraft
+OBJS += libAircraft
 
 all: 
 	@mkdir -p $(TARGET)

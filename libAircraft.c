@@ -25,6 +25,11 @@ float ypr[3];           // [yaw, pitch, roll]   yaw/pitch/roll container and gra
 // packet structure for InvenSense teapot demo
 uint8_t teapotPacket[14] = { '$', 0x02, 0,0, 0,0, 0,0, 0,0, 0x00, 0x00, '\r', '\n' };
 
+volatile bool mpuInterrupt = false;     // indicates whether MPU interrupt pin has gone high
+void dmpDataReady() {
+    mpuInterrupt = true;
+}
+
 void setup(){
 	Wire.begin();
 	// 初始化 I2C 設備
@@ -65,10 +70,11 @@ void setup(){
             printf(F("DMP Initialization failed (code "));
             printf("%d",devStatus);
             printf(F(")\n"));
+		}
 }
 
-    void loop() {
-        // if programming failed, don't try to do anything
+void loop(){
+		// if programming failed, don't try to do anything
         if (!dmpReady) return;
 
         // reset interrupt flag and get INT_STATUS byte
@@ -169,7 +175,7 @@ void setup(){
                 teapotPacket[8] = fifoBuffer[12];
                 teapotPacket[9] = fifoBuffer[13];
                 teapotPacket[11]++; // packetCount, loops at 0xFF on purpose
+			}
+}
 
-        }
-    }
 
