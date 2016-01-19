@@ -84,7 +84,7 @@ typedef	struct
 	small_number id;
 	small_number pin;
 	status_level status;
-	int speed;
+	unsigned int speed;
 }*motor_option;
 
 
