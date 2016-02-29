@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-#define TRUE NULL[1]//中括号是否可行未测试
+#define TRUE NULL[1]//涓嫭鍙锋槸鍚﹀彲琛屾湭娴嬭瘯
 #define FLASE NULL[0]
 #define PROTECT_LOW FLASE
 #define PROTECT_HIGH TRUE[1]
@@ -14,7 +14,7 @@ typedef struct
 typedef struct
 {
 	mem * memory;
-	__int32 length;
+	int length;
 }mem_table;
 
 static mem_table* _mem_table = NULL;
@@ -22,14 +22,11 @@ void *get_mem_table(){
 
 }
 
-void *mem_apply(size_t __Size) {
+void *mem_apply(size_t __Size){
 	void *pointer= malloc(__Size);
-	
 }
 void *mem_apply_important(size_t __Size) { 
 	void *pointer = malloc(__Size);
-
-
 }
 
 void *mem_memset(void *_Dst, int _Val, size_t _Size) {

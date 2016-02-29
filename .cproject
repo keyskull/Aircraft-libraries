@@ -18,7 +18,7 @@
 					<folderInfo id="cdt.managedbuild.toolchain.gnu.cygwin.base.208759658.832553944" name="/" resourcePath="">
 						<toolChain id="cdt.managedbuild.toolchain.gnu.cygwin.base.1816077100" name="Cygwin GCC" superClass="cdt.managedbuild.toolchain.gnu.cygwin.base">
 							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.Cygwin_PE" id="cdt.managedbuild.target.gnu.platform.cygwin.base.759589590" name="Debug Platform" osList="win32" superClass="cdt.managedbuild.target.gnu.platform.cygwin.base"/>
-							<builder id="cdt.managedbuild.target.gnu.builder.cygwin.base.1117763903" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" superClass="cdt.managedbuild.target.gnu.builder.cygwin.base">
+							<builder enableAutoBuild="false" id="cdt.managedbuild.target.gnu.builder.cygwin.base.1117763903" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" superClass="cdt.managedbuild.target.gnu.builder.cygwin.base">
 								<outputEntries>
 									<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="outputPath" name=""/>
 								</outputEntries>
@@ -30,13 +30,16 @@
 							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.base.1570827752" name="Cygwin C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.base"/>
 							<tool id="cdt.managedbuild.tool.gnu.c.compiler.cygwin.base.1114777581" name="Cygwin C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.cygwin.base">
 								<option id="gnu.c.compiler.option.include.paths.533481054" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;C:\cygwin64\usr\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aircraft-libraries/c_environment/libraries/Wire}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aircraft-libraries/c_environment/libraries/LiquidCrystal}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aircraft-libraries/c_environment/libraries/PN532_SPI}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aircraft-libraries/c_environment/libraries/SPI}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aircraft-libraries/c_environment/hardware/arduino/variants/sunxi}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aircraft-libraries/c_environment/hardware/arduino/cores/arduino}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;D:\work\openwork\linux-3.17.1\include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aircraft-libraries/c_environment/libraries/I2Cdev}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aircraft-libraries/c_environment/libraries/PID_v1}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aircraft-libraries/c_environment/libraries/MPU6050}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.cygwin.596765229" superClass="cdt.managedbuild.tool.gnu.c.compiler.input.cygwin"/>
 							</tool>
@@ -64,4 +67,10 @@
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		</scannerConfigBuildInfo>
 	</storageModule>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Default">
+			<resource resourceType="PROJECT" workspacePath="/Aircraft-libraries"/>
+		</configuration>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 </cproject>
