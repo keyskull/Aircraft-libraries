@@ -1,4 +1,4 @@
-#include "aircraft.h"
+#include "../Hardware_Driver/aircraft.h"
 
 
 static struct 
@@ -7,7 +7,14 @@ static struct
 	small_number length;
 }* motors;
 static small_number motor_count=0;
-
+void * check_inited(){
+	if ( motors==NULL)return FALSE;
+	else return TRUE;
+}
+void * check_motor_inited(int id){
+	if (id > motors->length - 1)return FALSE;
+	else return TRUE;
+}
 
 void init(small_number _motor_count) {
 	motor_count = _motor_count;
@@ -23,19 +30,22 @@ void init(small_number _motor_count) {
 	
 }
 
-status_level motor_status(int number) {
+status_level motor_status(int id) {
+	check_inited();
+	check_motor_inited(id);
 return NULL;
 }
 
 
 int motor_pin(small_number id, small_number pin) {
-	if (id > motors->length - 1)return FALSE;
+	check_inited();
+	check_motor_inited(id);
 	motors->motor[id]->pin = pin;
 	
 	return TRUE;
 }
-int motor_run_init(void) {//唔知岩唔岩
-	if (motors == NULL)return FALSE;
+int motor_run_init(void) {//需更改
+	if(!check_inited())return FALSE;
 	for (int speed = 0; speed < 100;speed+=10){
 		for (int id = 0; id < motors->length; id++)digitalWrite(motors->motor[id]->pin, HIGH);
 		delayMicroseconds(500);
@@ -45,8 +55,7 @@ int motor_run_init(void) {//唔知岩唔岩
 	}
 }
 int motor_run_loop(int id) {
-	if ( motors==NULL)return FALSE;
-	if (id > motors->length - 1)return FALSE;
+	if(!check_inited() && !check_motor_inited(id))return FALSE;
 	motors->motor[id]->status = runing;
 	while (motors->motor[id]->status==runing){
 		digitalWrite(motors->motor[id]->pin, HIGH);

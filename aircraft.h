@@ -7,7 +7,7 @@ typedef struct _Hardware_info Hardware_info;
 
 /*-------------Basic------------------------*/
 #define TRUE ((void*)0)
-#define FALSE ((void*)1)
+#define FALSE ((void*)-1)
 typedef unsigned char small_number;
 
 typedef int16_t __int16;
