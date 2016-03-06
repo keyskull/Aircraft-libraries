@@ -5,6 +5,7 @@
  *      Author: key_q
  */
 #include <MPU6050_6Axis_MotionApps20.h>
+#include "aircraft.h"
 MPU6050 mpu;
 bool dmpReady = false;  // set true if DMP init was successful
 uint8_t mpuIntStatus;   // holds actual interrupt status byte from MPU
@@ -25,7 +26,42 @@ float ypr[3];           // [yaw, pitch, roll]   yaw/pitch/roll container and gra
 // packet structure for InvenSense teapot demo
 uint8_t teapotPacket[14] = { '$', 0x02, 0,0, 0,0, 0,0, 0,0, 0x00, 0x00, '\r', '\n' };
 
+volatile bool mpuInterrupt = false;     // indicates whether MPU interrupt pin has gone high
+void dmpDataReady() {
+    mpuInterrupt = true;
+}
+static struct {
+	uint8_t* mpuIntStatus;   // holds actual interrupt status byte from MPU
+	uint8_t* devStatus;      // return status after each device operation (0 = success, !0 = error)
+	uint16_t* packetSize;    // expected DMP packet size (default is 42 bytes)
+	uint16_t* fifoCount;     // count of all bytes currently in FIFO
+	uint8_t* fifoBuffer; // FIFO storage buffer
+	Quaternion* q;           // [w, x, y, z]         quaternion container
+	VectorInt16* aa;         // [x, y, z]            accel sensor measurements
+	VectorInt16* aaReal;     // [x, y, z]            gravity-free accel sensor measurements
+	VectorInt16* aaWorld;    // [x, y, z]            world-frame accel sensor measurements
+	VectorFloat* gravity;    // [x, y, z]            gravity vector
+	float *euler;         // [psi, theta, phi]    Euler angle container
+	float *ypr;           // [yaw, pitch, roll]   yaw/pitch/roll container and gravity vector
+	// packet structure for InvenSense teapot demo
+	uint8_t *teapotPacket;
+}* MPU6050_data;
 void setup(){
+	MPU6050_data = mem_apply(sizeof(struct MPU6050_data));
+	MPU6050_data->mpuIntStatus=mem_apply(sizeof(uint8_t));
+	MPU6050_data->devStatus=mem_apply(sizeof(uint8_t));
+	MPU6050_data->packetSize=mem_apply(sizeof(uint16_t));
+	MPU6050_data->fifoCount=mem_apply(sizeof(uint16_t));
+	MPU6050_data->fifoBuffer=mem_apply(sizeof(uint8_t)*64);
+	MPU6050_data->q=mem_apply(sizeof(Quaternion));
+	MPU6050_data->aa=mem_apply(sizeof(VectorInt16));
+	MPU6050_data->aaReal=mem_apply(sizeof(VectorInt16));
+	MPU6050_data->aaWorld=mem_apply(sizeof(VectorInt16));
+	MPU6050_data->gravity=mem_apply(sizeof(VectorFloat));
+	MPU6050_data->euler=mem_apply(sizeof(float));
+	MPU6050_data->ypr=mem_apply(sizeof(float));
+	MPU6050_data->teapotPacket=mem_apply(sizeof(uint8_t)*14);
+
 	Wire.begin();
 	// 初始化 I2C 設備
 	printf("Initializing I2C devices...\n");
@@ -65,10 +101,11 @@ void setup(){
             printf(F("DMP Initialization failed (code "));
             printf("%d",devStatus);
             printf(F(")\n"));
+		}
 }
 
-    void loop() {
-        // if programming failed, don't try to do anything
+void loop(){
+		// if programming failed, don't try to do anything
         if (!dmpReady) return;
 
         // reset interrupt flag and get INT_STATUS byte
@@ -169,7 +206,21 @@ void setup(){
                 teapotPacket[8] = fifoBuffer[12];
                 teapotPacket[9] = fifoBuffer[13];
                 teapotPacket[11]++; // packetCount, loops at 0xFF on purpose
+			}
+    	MPU6050_data->mpuIntStatus=mpuIntStatus;
+    	MPU6050_data->devStatus=devStatus;
+    	MPU6050_data->packetSize=packetSize;
+    	MPU6050_data->fifoCount=fifoCount;
+    	MPU6050_data->fifoBuffer=fifoBuffer;
+    	MPU6050_data->q=q;
+    	MPU6050_data->aa=aa;
+    	MPU6050_data->aaReal=aaReal;
+    	MPU6050_data->aaWorld=aaWorld;
+    	MPU6050_data->gravity=gravity;
+    	MPU6050_data->euler=euler;
+    	MPU6050_data->ypr=ypr;
+    	MPU6050_data->teapotPacket=teapotPacket;
+}
 
-        }
-    }
+
 
