@@ -25,7 +25,6 @@
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.877225176" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker"/>
 						</toolChain>
 					</folderInfo>
-					<fileInfo id="cdt.managedbuild.toolchain.gnu.cygwin.base.208759658.1862191840" name="helper_3dmath.h" rcbsApplicability="disable" resourcePath="c_environment/libraries/MPU6050/helper_3dmath.h" toolsToInvoke=""/>
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>

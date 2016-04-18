@@ -11,12 +11,12 @@ INCS = -I.\
         -I$(DIR)/c_environment/libraries \
         -I$(DIR)/c_environment/libraries/Serial \
         -I$(DIR)/c_environment/libraries/SPI \
-	-I$(DIR)/c_environment/libraries/Wire \
-	-I$(DIR)/c_environment/libraries/LiquidCrystal \
-	-I$(DIR)/c_environment/libraries/PN532_SPIa \
-	-I$(DIR)/c_environment/libraries/PID_v1 \
-	-I$(DIR)/c_environment/libraries/I2Cdev \
-	-I$(DIR)/c_environment/libraries/MPU6050
+        -I$(DIR)/c_environment/libraries/Wire \
+        -I$(DIR)/c_environment/libraries/LiquidCrystal \
+        -I$(DIR)/c_environment/libraries/PN532_SPIa \
+        -I$(DIR)/libraries/PID_v1 \
+        -I$(DIR)/libraries/I2Cdev \
+        -I$(DIR)/libraries/MPU6050
 
 LIBS= $(DIR)/c_environment/libarduino.a
 TARGET= $(DIR)/build/test
@@ -24,8 +24,9 @@ TARGET= $(DIR)/build/test
 OBJS += libAircraft
 
 all: 
-	@mkdir -p $(TARGET)
-	@for i in $(OBJS); do echo "$(CXX) $(INCS) $$i.c -fPIC -o $(TARGET)/$$i.so $(LIBS) " && $(CXX) $(INCS) $$i.c -fPIC -o $(TARGET)/$$i.so $(LIBS) -shared; done
+	 make $(DIR)/c_environment
+	 echo "$(CXX) $(INCS) libAircraft.c -fPIC -o $(TARGET)/$$i.so $(LIBS) " &&
+	 $(CXX) $(INCS) libAircraft.c -fPIC -o $(TARGET)/libAircraft.so $(LIBS) -shared
 
 clean:
-	@for i in $(OBJS); do rm -f $(TARGET)/$$i; done
+	rm -f $(TARGET)/*
