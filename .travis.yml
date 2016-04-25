@@ -1,4 +1,5 @@
+language: c
 compiler:
   - clang
   - gcc
-install: make
+install: make && make test
