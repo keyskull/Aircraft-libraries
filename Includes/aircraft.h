@@ -13,6 +13,8 @@ typedef int16_t __int16;
 
 /*-------------Basic------------------------*/
 
+
+
 /*-------------Memory-Manager-----------------------*/
 typedef struct {
 	void * pointer;
@@ -28,15 +30,16 @@ void mem_free(void *);
 #define free(Pointer) mem_free(Pointer)
 /*-------------Memory-Manager-----------------------*/
 
+
 /*-------------Info-------------------------*/
 typedef enum { INFO, WARRING, ERROR } msg_level;
 void Message(msg_level,const char *_Format,...);
 #define DEBUG_MSG_INFO(str,arge) \
  	Message(__DATE__" "__TIME__"INFO:"str,##arge)
 #define DEBUG_MSG_WARRING(str,arge) \
- 	Message(__DATE__" "__TIME__"INFO:"str,##arge)
+ 	Message(__DATE__" "__TIME__"WARRING:"str,##arge)
 #define DEBUG_MSG_ERROR(str,arge) \
- 	Message(__DATE__" "__TIME__"INFO:"str,##arge)
+ 	Message(__DATE__" "__TIME__"ERROR:"str,##arge)
 
 /*-------------Info-------------------------*/
 
@@ -49,6 +52,7 @@ void Message(msg_level,const char *_Format,...);
 *
 *
 */
+
 
 /*-------------driver-------------------------*/
 typedef struct
