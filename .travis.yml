@@ -3,3 +3,4 @@ compiler:
   - clang
   - gcc
 install: make && make test
+sudo: false
