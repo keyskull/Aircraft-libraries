@@ -46,6 +46,7 @@ int motor_pin(small_number id, small_number pin) {
 	
 	return TRUE;
 }
+
 int motor_run_init(small_number id) {//需更改
 	if(!check_inited())return FALSE;
 	for (int speed = 0; speed < 100;speed+=10){
@@ -56,6 +57,7 @@ int motor_run_init(small_number id) {//需更改
 		delayMicroseconds(20000 - 500 - speed);
 	}
 }
+
 int motor_run_loop(small_number id) {
 	if(!check_inited() && !check_motor_inited(id))return FALSE;
 	motors->motor[id]->status = runing;

@@ -16,7 +16,8 @@ INCS = -I.\
         -I$(DIR)/c_environment/libraries/PN532_SPIa \
         -I$(DIR)/libraries/PID_v1 \
         -I$(DIR)/libraries/I2Cdev \
-        -I$(DIR)/libraries/MPU6050
+        -I$(DIR)/libraries/MPU6050 \
+        -I$(DIR)/Includes 
 
 LIBS= $(DIR)/c_environment/libarduino.a
 TARGET= $(DIR)/build/test
