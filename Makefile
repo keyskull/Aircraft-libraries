@@ -29,6 +29,9 @@ all:
 	 mkdir -p $(TARGET)
 	 echo "$(CXX) $(INCS) libAircraft.c -fPIC -o $(TARGET)/$$i.so $(LIBS) " 
 	 $(CXX) $(INCS) libAircraft.c -fPIC -o $(TARGET)/libAircraft.so $(LIBS) -shared
+	 
+test:
+	echo "test"
 
 clean:
 	rm -f $(TARGET)/*
