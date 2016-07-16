@@ -1,4 +1,4 @@
-#include <core.h>
+#include <Arduino.h>
 #include <Serial.h>
 #include <Wire.h>
 
